@@ -171,19 +171,6 @@ vim.keymap.set('i', 'kj', '<Esc>', { noremap = true })
 -- Go to project view (filesystem)
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
-local builtin = require 'telescope.builtin'
-
--- project find (pf) searches all project files; requires telescope
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-
--- project git (pg) searches all project files in git; requires telescope
-vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
-
--- project string (ps) searches all project files with string; requires telescope and ripgrep
-vim.keymap.set('n', '<leader>ps', function()
-  builtin.grep_string { search = vim.fn.input 'Grep > ' }
-end)
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
