@@ -168,15 +168,19 @@ vim.opt.confirm = true
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 vim.keymap.set('i', 'kj', '<Esc>', { noremap = true })
 
--- Map ;; to <Esc> in normal mode
-vim.keymap.set('n', ';;', '<Esc>', { noremap = true })
-
 -- Go to project view (filesystem)
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
--- Clear highlights on search when pressing <Esc> in normal mode
+-- Auto indent whole file on <leader>i
+vim.keymap.set('n', '<leader>i', function()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  vim.cmd 'silent! keepjumps normal! gg=G'
+  vim.api.nvim_win_set_cursor(0, pos)
+end, { desc = 'Indent entire file without moving cursor' })
+
+-- Clear highlights on search when pressing ;; in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', ';;', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
