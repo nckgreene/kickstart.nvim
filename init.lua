@@ -164,9 +164,12 @@ vim.opt.confirm = true
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Map j + k chord to <ESC> in insert mode
+-- Map j + k chord to <Esc> in insert mode
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 vim.keymap.set('i', 'kj', '<Esc>', { noremap = true })
+
+-- Map ;; to <Esc> in normal mode
+vim.keymap.set('n', ';;', '<Esc>', { noremap = true })
 
 -- Go to project view (filesystem)
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
@@ -400,17 +403,25 @@ require('lazy').setup({
       -- Telescope picker. This is really useful to discover what Telescope can
       -- do as well as how to actually do it!
 
+      local actions = require 'telescope.actions'
+
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-c>'] = actions.close,
+            },
+            n = {
+              ['<C-c>'] = actions.close,
+            },
+            --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -983,7 +994,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
