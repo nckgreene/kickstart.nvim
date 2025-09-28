@@ -217,6 +217,15 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+-- netrw line numbers
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'netrw',
+  callback = function()
+    vim.wo.number = true -- Show absolute line number for the current line
+    vim.wo.relativenumber = true -- Show relative numbers for other lines
+  end,
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -712,6 +721,8 @@ require('lazy').setup({
             },
           },
         },
+
+        ts_ls = {},
 
         ruff = {
           init_options = {
