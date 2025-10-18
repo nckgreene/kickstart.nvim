@@ -168,6 +168,12 @@ vim.opt.confirm = true
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 vim.keymap.set('i', 'kj', '<Esc>', { noremap = true })
 
+-- Navigate vim panes better
+vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
+vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
+vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+
 -- Go to project view (filesystem)
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
@@ -238,10 +244,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Configure indentation for all files
-vim.opt.expandtab = true     -- Use spaces instead of tabs
-vim.opt.shiftwidth = 2       -- Number of spaces for each indentation level
-vim.opt.tabstop = 2          -- Number of spaces a tab character represents
-vim.opt.softtabstop = 2      -- Number of spaces for tab key in insert mode
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2 -- Number of spaces for each indentation level
+vim.opt.tabstop = 2 -- Number of spaces a tab character represents
+vim.opt.softtabstop = 2 -- Number of spaces for tab key in insert mode
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -708,11 +714,11 @@ require('lazy').setup({
             textDocument = {
               completion = {
                 completionItem = {
-                  snippetSupport = false
-                }
-              }
-            }
-          }
+                  snippetSupport = false,
+                },
+              },
+            },
+          },
         },
         -- gopls = {},
         -- pyright = {},
@@ -1081,6 +1087,5 @@ require('lazy').setup({
     },
   },
 })
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
